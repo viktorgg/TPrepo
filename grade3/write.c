@@ -20,7 +20,7 @@ int main()
     i++;
     }
 
-		close(fd);
+    close(fd);
     unlink(fifo);
 
     return 0;
