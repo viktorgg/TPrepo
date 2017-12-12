@@ -7,22 +7,20 @@
 
 int main()
 {
-    int fd, l;
+    int fd, i=0;
     char string[100], buffer[100];
     char *fifo = "myfifo";	
 
     mkfifo(fifo, 0600);
-		
-    while(l < 10){   
+    fd = open(fifo, O_WRONLY);		
+
+    while(i < 10){   
     fgets(string, 100, stdin);
-    l = strlen(string);
-    fd = open(fifo, O_RDWR);
     write(fd, string, sizeof(string));
-    read(fd, buffer, 100);
-    printf("%s\n", buffer);
-    close(fd);	
+    i++;
     }
 
+		close(fd);
     unlink(fifo);
 
     return 0;
